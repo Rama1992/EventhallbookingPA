@@ -1,0 +1,28 @@
+{% extends "nav.html" %}
+{% block page_content %}
+    <div class="container">
+        <h3>Booking details</h3>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Booking ID</th>
+          <th scope="col">Hall Name</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+        {%  for r in reservations %}
+      <tbody>
+        <tr>
+          <th scope="row">{{ r.id }}</th>
+          <td>{{ r.booked_hall_name }}</td>
+          <td>{{ r.booked_on_date}}</td>
+          <td><a href="{% url 'hall_editbooking' r.pk %}" class="btn btn-warning">Edit</a>
+          <td><a href="{% url 'hall_deletebooking' r.pk %}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a></td>
+        </tr>
+      </tbody>
+        {% endfor %}
+    </table>
+
+    </div>
+{% endblock %}

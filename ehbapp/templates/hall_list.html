@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block page_content %}
+    <h3>Pick your favorite from our divine list</h3> <br>
+    <div class="row">
+        {% for hall in halls %}
+            <div class="col-sm-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <img class="card-image-top embed-responsive embed-responsive-item" src="{{ hall.image }}" alt="Card image cap">
+                        </div>
+
+                        <h5 class="card-title">{{hall.name}}</h5>
+                        <p class="card-text">{{ hall.description | slice:":200" }}</p>
+                        <a href="{% url 'hall_detail' hall.pk %}" class="btn btn-primary">View Details</a>
+                        {% if user.is_superuser %}
+                            <a href="{% url 'edit_eventhalls' hall.pk %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'delete_eventhalls' hall.pk %}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <br>
+        {% if user.is_superuser %}
+        <div class="col-sm-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <a href="{% url 'add_eventhalls' %}"><img class="card-image-top embed-responsive embed-responsive-item" src="https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Add-1-512.png" alt="Add Hall"></a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

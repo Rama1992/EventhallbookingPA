@@ -1,0 +1,46 @@
+{% extends "nav.html" %}
+{% load crispy_forms_tags %}
+<head>
+        {# Include FontAwesome; required for icon display #}
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+    {# Include Bootstrap 4 and jQuery #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    {# Django Tempus Dominus assets are included in `{{ form.media }}` #}
+    {{ form.media }}
+</head>
+{% block page_content %}
+    <div>
+        <img src="https://cdn.shopify.com/s/files/1/0558/3725/files/Sheer_voile_fabric_collection_2048x2048.jpg?v=1565703910" style="width: 100%; height: 700px;">
+    </div>
+    <div class="container">
+        <h3>{{ hall.name }}</h3> <br>
+        <div class="row">
+            <div class="col-md-3">
+                <p>City: {{ hall.city }}, &nbsp State: {{ hall.state }}</p>
+                <p>Capacity: {{ hall.capacity }}</p>
+                <p>Contact: {{ hall.phone_number }}</p>
+            </div>
+            <div class="col-md-9">
+                <p> {{ hall.description }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- have to add datepicker here
+                <form method="post">
+                        <div class="form-group ">
+                            <label for="txtDate">Event Date</label>
+                            <input type="date" class="form-control" id="txtDate" min={current_date}} name="date">
+                        </div>
+                      { form|crispy }} -->
+                    <div class="form-row text-center">
+                        <a href="{% url 'booking' hall.pk %}" class="btn btn-primary"> Book </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

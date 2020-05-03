@@ -1,0 +1,11 @@
+db.sqlite3
+
+ehbapp/migrations
+
+venv/
+
+*.pyc
+*~
+__pycache__
+/static
+.DS_Store

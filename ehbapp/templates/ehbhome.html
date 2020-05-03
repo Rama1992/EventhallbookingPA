@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Event Hall Booking</title>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+      body {
+          font: 400 15px/1.8 Lato, sans-serif;
+          color: #777;
+      }
+      .container {
+        padding: 80px 120px;
+      }
+      .carousel-inner img {
+          width: 100%; /* Set width to 100% */
+          margin: auto;
+      }
+      .carousel-caption h3 {
+          color: #fff !important;
+      }
+      @media (max-width: 600px) {
+          .carousel-caption {
+              display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+          }
+      }
+      .navbar {
+          margin-bottom: 0;
+          background-color: #2d2d30;
+          border: 0;
+          font-size: 15px !important;
+          letter-spacing: 4px;
+          opacity: 0.9;
+          font-family: Montserrat, sans-serif;
+      }
+      .navbar li a, .navbar .navbar-brand {
+          color: #d5d5d5 !important;
+      }
+      .navbar-nav li a:hover {
+          color: #fff !important;
+      }
+      .navbar-nav li.active a {
+          color: #fff !important;
+          background-color:#29292c !important;
+      }
+      .navbar-default .navbar-toggle {
+          border-color: transparent;
+      }
+      .footer {
+          background-color: #2d2d30;
+          color: #f5f5f5;
+          padding: 32px;
+      }
+      footer a {
+          color: #f5f5f5;
+      }
+      footer a:hover {
+          color: #777;
+          text-decoration: none;
+      }
+      .person {
+          border: 10px solid transparent;
+          margin-bottom: 25px;
+          width: 90%;
+          height: 90%;
+          opacity: 0.7;
+      }
+      .person:hover {
+          border-color: #f1f1f1;
+      }
+  </style>
+  <script>
+      $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();
+      })
+  </script>
+</head>
+<body>
+    <!-- carousel code -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="https://prestigiousvenues.com/wp-content/uploads/2018/02/Festival-of-Transport-Blenheim-Palace-Prestigious-Venues.jpg" alt="New York"
+                     height="700" max-width="none">
+                <div class="carousel-caption">
+                    <h3>New York</h3>
+                    <p>The atmosphere in New York is lorem ipsum.</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://lpmbohemia.com/wp-content/uploads/2013/01/home-slider-2.jpg" alt="Chicago" width="1600" height="700">
+                <div class="carousel-caption">
+                    <h3>Chicago</h3>
+                    <p>Thank you, Chicago - A night we won't forget.</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://www.propfactory.co.uk/images/slider/vintage-circus.jpg" alt="Los Angeles" width="1600" height="700">
+                <div class="carousel-caption">
+                    <h3>LA</h3>
+                    <p>Even though the traffic was a mess, we had the best time.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'ehbhome.html' %}">Event Hall Booking</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                 <ul class="nav navbar-nav">
+                     <li><a href="{% url 'ehbhome.html' %}">Home</a></li>
+                     <li><a href="{% url 'hall_list' %}">Event Halls</a></li>
+                     {% if user.is_authenticated %}
+                        <li><a href={% url 'hall_bookings' %}>Booking Details</a></li>
+                    {% endif %}
+                 </ul>
+                 <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="{% url 'login' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center">
+        <h3>THE EVENT HALL BOOKING</h3>
+        <p><em>We love events!</em></p>
+        <p>We have created a fictional website to book venues. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <br>
+        <div class="col-sm-4">
+            <p class="text-center"><strong>Doxford Hall</strong></p><br>
+            <a href="#demo" data-toggle="collapse">
+                <img src="https://www.speedybooker.com/photos/fit.ashx?file=11032804_84742.jpg" class="img-circle person" alt="Random Name"  style="height: 300px">
+            </a>
+            <div id="demo" class="collapse">
+                <p>Disabled Access</p>
+                <p>Long walks on the beach</p>
+                <p>Since 1988</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center"><strong>Vintage UK</strong></p><br>
+            <a href="#demo2" data-toggle="collapse">
+                <img src="https://www.speedybooker.com/photos/fit.ashx?file=11034441_62714.jpg" class="img-circle person" alt="Random Name" style="height: 300px">
+            </a>
+            <div id="demo2" class="collapse">
+                <p>Disabled Access</p>
+                <p>Wedding Coordinator Available</p>
+                <p>Since 1988</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center"><strong>Divine Irish</strong></p><br>
+            <a href="#demo3" data-toggle="collapse">
+                <img src="https://georgiavintageweddings.com/wp-content/uploads/2017/11/vintage-weddings-georgia-wedding-venue-barn-lake-atlanta-spring-lake-events-57.jpg" class="img-circle person" alt="Random Name" style="height: 300px">
+            </a>
+            <div id="demo3" class="collapse">
+                <p>Live Music</p>
+                <p>Karaoke</p>
+                <p>Since 2005</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer class="text-center">
+        <a class="up-arrow" href="#" data-toggle="tooltip" title="TO TOP">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a><br><br>
+        <p>Event Hall Booking Made By Rama Anantatmula</p>
+    </footer>
+
+</body>
+</html>
